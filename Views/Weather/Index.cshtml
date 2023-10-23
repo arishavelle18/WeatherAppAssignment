@@ -1,0 +1,49 @@
+﻿@using WeatherAppAssignment.Models;
+@model IEnumerable<CityWeather>
+@{
+    string GetCssClassByFahrenheit(int temp)
+    {
+        if (temp < 44)
+        {
+            return "blue-back";
+        }
+        else if (temp >= 44 && temp < 74)
+        {
+            return "green-back";
+        }
+        else
+        {
+            return "orange-back";
+        }
+        
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <meta charset="utf-8" />
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Weather</h1>
+    <div class="page-content">
+        @foreach (var weather in Model)
+        {
+            <div class="box w-25 float-left @GetCssClassByFahrenheit(weather.TemperatureFahrenheit)">
+                <div class="float-left w-75">
+                    <h3>@weather.CityName</h3>
+                    <h4>@weather.DateAndTime.ToString("hh:mm tt")</h4>
+                    <a href="/weather/@weather.CityUniqueCode" class="details">Details</a>
+                </div>
+                <div class="">
+                    <h3>@weather.TemperatureFahrenheit <span class="">°F</span></h3>
+                    
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+</html>
