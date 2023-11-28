@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<CityWeather>
 
-@{
-    await Html.RenderPartialAsync("_WeatherListPartialView", Model);
-}
+@await Component.InvokeAsync("WeatherGrid",new {
+grid = Model
+})
