@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<CityWeather>
 
-@await Component.InvokeAsync("WeatherGrid",new {
-grid = Model
-})
+@foreach(CityWeather city in Model)
+{
+    @await Component.InvokeAsync("WeatherGrid",new {
+        city = city
+    })
+}

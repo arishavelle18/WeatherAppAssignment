@@ -1,35 +1,16 @@
-﻿@model IEnumerable<CityWeather>
-@{
-    string GetCssClassByFahrenheit(int temp)
-    {
-        if (temp < 44)
-        {
-            return "blue-back";
-        }
-        else if (temp >= 44 && temp < 74)
-        {
-            return "green-back";
-        }
-        else
-        {
-            return "orange-back";
-        }
+﻿@model CityWeather
 
-    }
-}
 
-@foreach (CityWeather weather in Model)
-{
-    <div class="box w-25 float-left @GetCssClassByFahrenheit(weather.TemperatureFahrenheit)">
-        <div class="float-left w-75">
-            <h3>@weather.CityName</h3>
-            <h4>@weather.DateAndTime.ToString("hh:mm tt")</h4>
-            <a href="/weather/@weather.CityUniqueCode" class="details">Details</a>
-        </div>
-        <div class="">
-            <h3>@weather.TemperatureFahrenheit <span class="">°F</span></h3>
-
-        </div>
+<div class="box w-25 float-left @ViewData["TemperatureFahrenheit"]">
+    <div class="float-left w-75">
+        <h3>@Model.CityName</h3>
+        <h4>@Model.DateAndTime.ToString("hh:mm tt")</h4>
+        <a href="/weather/@Model.CityUniqueCode" class="details">Details</a>
     </div>
-}
+    <div class="">
+        <h3>@Model.TemperatureFahrenheit <span class="">°F</span></h3>
+
+    </div>
+</div>
+
 
